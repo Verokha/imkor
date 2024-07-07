@@ -1,0 +1,115 @@
+@import "base-modal.scss";
+
+@media screen and (min-height: calc(100vw + 100px)) {
+    .modal__container {
+        width: get-vw(355px, 375);
+        border-radius: 30px;
+        border: get-vw(2px, 375) solid rgba(0, 86, 232, 1);
+        .modal_header {
+            .modal-close {
+                position: absolute;
+                right: get-vw(12px, 375);
+                top: get-vw(18px, 375);
+                cursor: pointer;
+            }
+        }
+        .modal_property_content {
+            padding-top: get-vw(50px, 375);
+            padding-left: get-vw(20px, 375);
+            padding-right: get-vw(20px, 375);
+            .title {
+                @include font(16px, 300, 19.5px, 375);
+                color: rgba(13, 13, 13, 1);
+                padding-bottom: get-vw(20px, 375);
+            }
+            .description {
+                padding-top: get-vw(50px, 375);
+                padding-bottom: get-vw(50px, 375);
+                @include font(12px, 300, 19.5px, 375);
+                color: rgba(13, 13, 13, 1);
+                .contact_page {
+                    text-decoration: none;
+                    color: rgba(218, 116, 40, 1);
+                }
+            }
+        }
+        .button_wrapper {
+            text-align: center;
+            padding-top: get-vw(35px, 1920);
+            padding-bottom: get-vw(35px, 1920);
+            display: flex;
+            justify-content: center;
+            button {
+                display: block;
+                text-decoration: none;
+                @include font(16px, 300, 19.5px, 375);
+                color: rgba(255, 255, 255, 1);
+                background-color: rgba(0, 86, 232, 1);
+                width: get-vw(150px, 375);
+                height: get-vw(30px, 375);
+                border-radius: get-vw(100px, 375);
+                border: none;
+            }
+        }
+    }
+}
+
+
+@media screen and (max-height: calc(100vw + 100px - 1px)) {
+    .modal__container {
+        width: get-vw(1492px, 1920);
+        max-height: 100vh;
+        overflow-y: auto;
+        border-radius: 40px;
+        border: get-vw(3px, 1920) solid rgba(0, 86, 232, 1);
+        .modal_header {
+            .modal-close {
+                padding-top: get-vw(40px, 1920);
+                padding-right: get-vw(45px, 1920);
+                text-align: right;
+                svg {
+                    cursor: pointer;
+                    width: get-vw(37px, 1920);
+                }
+            }
+        }
+        .modal_property_content {
+            padding-top: get-vw(10px, 1920);
+            padding-left: get-vw(100px, 1920);
+            padding-right: get-vw(100px, 1920);
+            .title {
+                @include font(38px, 200, 94.4px);
+                color: rgba(13, 13, 13, 1);
+            }
+            .description {
+                padding-top: get-vw(65px, 1920);
+                padding-bottom: get-vw(311px, 1920);
+                @include font(28px, 200, 38.09px);
+                color: rgba(13, 13, 13, 1);
+                .contact_page {
+                    text-decoration: none;
+                    color: rgba(218, 116, 40, 1);
+                }
+            }
+        }
+        .button_wrapper {
+            text-align: center;
+            padding-top: get-vw(35px, 1920);
+            padding-bottom: get-vw(35px, 1920);
+            display: flex;
+            justify-content: center;
+            button {
+                cursor: pointer;
+                display: block;
+                text-decoration: none;
+                @include font(16px, 300, 32px);
+                color: rgba(255, 255, 255, 1);
+                background-color: rgba(0, 86, 232, 1);
+                width: get-vw(200px, 1920);
+                height: get-vw(35px, 1920);
+                border-radius: 100px;
+                border: none;
+            }
+        }
+    }
+}

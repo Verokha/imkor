@@ -1,0 +1,237 @@
+@import "base-modal.scss";
+@media screen and (min-height: calc(100vw + 100px)) {
+    .modal__container {
+        width: get-vw(355px, 375);
+        border-radius: 30px;
+        border: 2px solid rgba(0, 86, 232, 1);
+        .modal-close {
+            position: absolute;
+            right: get-vw(12px, 375);
+            top: get-vw(18px, 375);
+            cursor: pointer;
+        }
+        .modal_data {
+            padding-left: get-vw(12px, 375);
+            padding-bottom: get-vw(39px, 375);
+            padding-top: get-vw(55px, 375);
+            padding-right: get-vw(12px, 375);
+            .car_photo {
+                display: grid;
+                //width: get-vw(786px, 1920);
+                .big-photo {
+                    width: 100%;
+                    height: get-vw(169px, 375);
+                    img {
+                        &.active {
+                            display: block;
+                        }
+                        display: none;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 20px;
+                        object-fit: cover;
+                    }
+                }
+                .small-photo {
+                    display: flex;
+                    column-gap: get-vw(15px, 375);
+                    padding-top: get-vw(58px, 1920);
+                    img {
+                        cursor: pointer;
+                        width: get-vw(72px, 375);
+                        height: get-vw(72px, 375);
+                        object-fit: cover;
+                        border-radius: 10px;
+                    }
+                }
+            }
+            .car_info {
+                padding-top: get-vw(39px, 375);
+                display: grid;
+                width: 100%;
+                //width: get-vw(621px, 1920);
+                .title {
+                    @include font(20px, 500, 24.38px, 375);
+                    color: rgba(0, 0, 0, 1);
+                    border-bottom: 1px solid black;
+                }
+                .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-top: get-vw(15.3px, 375);
+                    border-bottom: 1px solid black;
+                    p {
+                        @include font(14px, 300, 17.07px, 375);
+                    }
+                }
+                .contacts {
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    align-items: center;
+                    //align-self: end;
+                    padding-top: get-vw(26px, 375);
+                    .tagline {
+                        @include font(12px, 300, 14.63px, 375);
+                        color: rgba(0, 0, 0, 1);
+                        .blue {
+                            color: rgba(24, 79, 171, 1);
+                            font-weight: 500;
+                            text-decoration: underline;
+                            text-underline-offset: 4px;
+                        }
+                    }
+                    .button-contact {
+                        text-decoration: none;
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        width: get-vw(169px, 375);
+                        height: get-vw(35px, 375);
+                        border: 2px solid rgba(0, 86, 232, 1);
+                        border-radius: 50px;
+                        color: black;
+                        @include font(14px, 400, 17.07px, 375);
+                        span.text {
+                            padding-left: get-vw(15px, 375);
+                        }
+                        span.aggregate {
+                            width: get-vw(61px, 375);
+                            height: get-vw(25px, 375);
+                            border-radius: 50px;
+                            background-color: rgba(0, 86, 232, 1);
+                            margin-left: auto;
+                            margin-right: get-vw(5px, 375);
+                            display: grid;
+                            svg {
+                                justify-self: center;
+                                align-self: center;
+                                width: get-vw(32px, 375);
+                                height: get-vw(7px, 375);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Медиа-запрос с условием высоты меньше чем ширина + 100px
+@media screen and (max-height: calc(100vw + 100px - 1px)) {
+    .modal__container {
+        width: get-vw(1557px, 1920);
+        border-radius: 40px;
+        border: 3px solid rgba(0, 86, 232, 1);
+        .modal-close {
+            position: absolute;
+            right: get-vw(40px, 1920);
+            top: get-vw(40px, 1920);
+            cursor: pointer;
+        }
+        .modal_data {
+            padding-left: get-vw(50px, 1920);
+            padding-bottom: get-vw(50px, 1920);
+            padding-top: get-vw(50px, 1920);
+            padding-right: get-vw(50px, 1920);
+            display: flex;
+            column-gap: get-vw(50px, 1920);
+            .car_photo {
+                width: get-vw(786px, 1920);
+                .big-photo {
+                    width: get-vw(786px, 1920);
+                    height: get-vw(533px, 1920);
+                    img {
+                        &.active {
+                            display: block;
+                        }
+                        display: none;
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 30px;
+                        object-fit: cover;
+                    }
+                }
+                .small-photo {
+                    display: flex;
+                    column-gap: get-vw(34px, 1920);
+                    padding-top: get-vw(58px, 1920);
+                    img {
+                        cursor: pointer;
+                        width: get-vw(171px, 1920);
+                        height: get-vw(171px, 1920);
+                        object-fit: cover;
+                        border-radius: 20px;
+                    }
+                }
+            }
+            .car_info {
+                display: grid;
+                width: get-vw(621px, 1920);
+                .title {
+                    @include font(36px, 400, 43.88px);
+                    color: rgba(0, 0, 0, 1);
+                    padding-top: get-vw(9px, 1920);
+                    border-bottom: 3px solid black;
+                }
+                .item {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-top: get-vw(40px, 1920);
+                    border-bottom: 3px solid black;
+                    p {
+                        @include font(32px, 300, 39.01px);
+                    }
+                }
+                .contacts {
+                    display: grid;
+                    align-self: end;
+                    .tagline {
+                        padding-top: get-vw(60px, 1920);
+                        @include font(30px, 300, 39.01px);
+                        color: rgba(0, 0, 0, 1);
+                        .blue {
+                            color: rgba(24, 79, 171, 1);
+                            text-decoration: underline;
+                            text-underline-offset: 4px;
+                        }
+                    }
+                    .button-contact {
+                        margin-top: get-vw(59px, 1920);
+                        text-decoration: none;
+                        cursor: pointer;
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        width: get-vw(403px, 1920);
+                        height: get-vw(73px, 1920);
+                        border: 3px solid rgba(0, 86, 232, 1);
+                        border-radius: 100px;
+                        color: black;
+                        @include font(24px, 300, 29.26px);
+                        span.text {
+                            padding-left: get-vw(40px, 1920);
+                        }
+                        span.aggregate {
+                            width: get-vw(151px, 1920);
+                            height: get-vw(51px, 1920);
+                            border-radius: 100px;
+                            background-color: rgba(0, 86, 232, 1);
+                            margin-left: auto;
+                            margin-right: get-vw(11px, 1920);
+                            display: grid;
+                            svg {
+                                justify-self: center;
+                                align-self: center;
+                                width: get-vw(59px, 1920);
+                                height: get-vw(13px, 1920);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

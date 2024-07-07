@@ -1,0 +1,19 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "devDependencies": {
+        "laravel-vite-plugin": "^1.0",
+        "sass": "^1.70.0",
+        "video.js": "^8.16.1",
+        "vite": "^5.0"
+    },
+    "dependencies": {
+        "lightgallery": "^2.7.2",
+        "micromodal": "^0.4.10",
+        "swiper": "^11.1.4"
+    }
+}

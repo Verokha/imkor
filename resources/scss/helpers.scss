@@ -1,0 +1,9 @@
+[class*="js-"] {
+    &[class*="end"] {
+      justify-self: end;
+    }
+  
+    &[class*="start"] {
+      justify-self: start;
+    }
+}
