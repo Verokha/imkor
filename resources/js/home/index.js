@@ -11,146 +11,7 @@ import "lightgallery/css/lightgallery-bundle.css";
 import videojs from "video.js";
 window["videojs"] = videojs;
 import "video.js/dist/video-js.css";
-
-const accordion = () => {
-    const acc = document.getElementsByClassName("accordion");
-    let i;
-
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            const panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            }
-            panel.classList.toggle("active");
-        });
-    }
-};
-
-const handleFilterItem = (elem) => {
-    elem.addEventListener("click", async (e) => {
-        const traget = e.target;
-        const type = traget.getAttribute("type");
-        document
-            .querySelector(".categories > .current")
-            .classList.toggle("current");
-        document
-            .querySelector(`.category-item[type="${type}"]`)
-            .classList.toggle("current");
-
-        const url = new URL(window.location.href);
-        url.searchParams.delete("page");
-
-        // if (document.querySelector(".current.page")) {
-        //     const page = document
-        //         .querySelector(".current.page")
-        //         .getAttribute("page");
-        //     url.searchParams.set("page", page);
-        // }
-        url.searchParams.set("filterType", type);
-        history.replaceState({}, document.title, url.toString());
-        document.querySelector(".select-tagline__m").innerText =
-            traget.innerText;
-        document.querySelector(".select-tagline").innerText =
-        traget.innerText;
-        if (
-            document
-                .querySelector(".products-block")
-                .classList.contains("active")
-        ) {
-            document
-                .querySelector(".select-tagline__m")
-                .dispatchEvent(new Event("click"));
-        }
-
-        //document.querySelector(".products-block").classList.toggle('active');
-
-        const response = await fetch(`/api/cars${url.search}`);
-        if (response.ok) {
-            const data = await response.text();
-            document
-                .querySelectorAll(".button-more")
-                .forEach((item) => item.remove());
-            document
-                .querySelectorAll(".paginator  a")
-                .forEach((item) => item.remove());
-            document.getElementById("carItems").innerHTML = data;
-            document
-                .querySelectorAll(".paginator  a")
-                .forEach((item) => handlePaginateItem(item));
-            document.querySelectorAll(".button-more").forEach((elem) => {
-                handleModal(elem);
-            });
-        }
-    });
-};
-
-const handlePaginateItem = (elem) => {
-    elem.addEventListener("click", async (e) => {
-        e.preventDefault();
-        let target = e.currentTarget;
-        const href = target.getAttribute("href");
-        const hrefUr = new URL(href);
-
-        const url = new URL(window.location.href);
-        url.searchParams.set("page", hrefUr.searchParams.get("page"));
-        if (hrefUr.searchParams.get("filterType")) {
-            url.searchParams.set(
-                "filterType",
-                hrefUr.searchParams.get("filterType")
-            );
-        }
-        history.replaceState({}, document.title, url.toString());
-
-        const response = await fetch(`/api/cars${url.search}`);
-        if (response.ok) {
-            const data = await response.text();
-            document
-                .querySelectorAll(".button-more")
-                .forEach((item) => item.remove());
-            document
-                .querySelectorAll(".paginator  a")
-                .forEach((item) => item.remove());
-            document.getElementById("carItems").innerHTML = data;
-            document
-                .querySelectorAll(".paginator  a")
-                .forEach((item) => handlePaginateItem(item));
-            document.querySelectorAll(".button-more").forEach((elem) => {
-                handleModal(elem);
-            });
-        }
-    });
-};
-const scrollStickiHeader = (elem) => {
-    elem.addEventListener("click", async (e) => {
-        document.querySelector(
-            ".sticky-header .border .select-tagline"
-        ).innerText = e.currentTarget.innerText;
-        document
-            .querySelector(".section.sticky-header")
-            .classList.remove("active");
-        document.querySelector(".products-block").scrollIntoView({
-            behavior: "smooth",
-        });
-    });
-};
-
-const filterItems = () => {
-    document
-        .querySelectorAll(".category-item")
-        .forEach((item) => handleFilterItem(item));
-    document.querySelectorAll(".category-items > p").forEach((item) => {
-        scrollStickiHeader(item);
-        handleFilterItem(item);
-    });
-    document
-        .querySelectorAll(".paginator  a")
-        .forEach((item) => handlePaginateItem(item));
-};
-
-
+import { handleModal } from "./modal";
 
 const vwToPixels = (vw) => {
     const screenWidth = window.innerWidth;
@@ -172,65 +33,65 @@ const onCloseModal = (modal) => {
     document.getElementById(`${modalId}_wrapper`).remove();
 };
 
-const handleModal = (elem) => {
-    elem.addEventListener("click", async (e) => {
-        const response = await fetch(
-            `/api/cars/${e.currentTarget.getAttribute("data-id")}`
-        );
-        if (response.ok) {
-            const gameModal = "modal-1";
-            const content = await response.text();
-            insertmodal(content, gameModal);
-            MicroModal.show(gameModal, {
-                disableScroll: true,
-                disableFocus: true,
-                onClose: (modal) => {
-                    onCloseModal(modal);
-                },
-                onShow: (modal) => {
-                    document
-                        .querySelectorAll(".small-photo > img")
-                        .forEach((item) => {
-                            item.addEventListener("click", (e) => {
-                                document
-                                    .querySelector(
-                                        ".big-photo > a > img.active"
-                                    )
-                                    .classList.toggle("active");
-                                document
-                                    .querySelector(
-                                        `.big-photo > a > img[data-key="${e.currentTarget.getAttribute(
-                                            "data-key"
-                                        )}"]`
-                                    )
-                                    .classList.toggle("active");
-                            });
-                        });
-                    lightGallery(document.getElementById("lightgallery"), {
-                        speed: 500,
-                        plugins: [lgZoom, lgThumbnail],
-                        closable: true,
-                        mobileSettings: {
-                            controls: true,
-                            showCloseIcon: true,
-                        },
-                        showCloseIcon: true,
-                        //licenseKey: "0000-0000-000-0000",
-                        // ... other settings
-                    });
-                    document
-                        .querySelector(".to_contact")
-                        .addEventListener("click", () => {
-                            MicroModal.close(gameModal);
-                            document.getElementById("contacts").scrollIntoView({
-                                behavior: "smooth",
-                            });
-                        });
-                },
-            });
-        }
-    });
-};
+// const handleModal = (elem) => {
+//     elem.addEventListener("click", async (e) => {
+//         const response = await fetch(
+//             `/api/cars/${e.currentTarget.getAttribute("data-id")}`
+//         );
+//         if (response.ok) {
+//             const gameModal = "modal-1";
+//             const content = await response.text();
+//             insertmodal(content, gameModal);
+//             MicroModal.show(gameModal, {
+//                 disableScroll: true,
+//                 disableFocus: true,
+//                 onClose: (modal) => {
+//                     onCloseModal(modal);
+//                 },
+//                 onShow: (modal) => {
+//                     document
+//                         .querySelectorAll(".small-photo > img")
+//                         .forEach((item) => {
+//                             item.addEventListener("click", (e) => {
+//                                 document
+//                                     .querySelector(
+//                                         ".big-photo > a > img.active"
+//                                     )
+//                                     .classList.toggle("active");
+//                                 document
+//                                     .querySelector(
+//                                         `.big-photo > a > img[data-key="${e.currentTarget.getAttribute(
+//                                             "data-key"
+//                                         )}"]`
+//                                     )
+//                                     .classList.toggle("active");
+//                             });
+//                         });
+//                     lightGallery(document.getElementById("lightgallery"), {
+//                         speed: 500,
+//                         plugins: [lgZoom, lgThumbnail],
+//                         closable: true,
+//                         mobileSettings: {
+//                             controls: true,
+//                             showCloseIcon: true,
+//                         },
+//                         showCloseIcon: true,
+//                         //licenseKey: "0000-0000-000-0000",
+//                         // ... other settings
+//                     });
+//                     document
+//                         .querySelector(".to_contact")
+//                         .addEventListener("click", () => {
+//                             MicroModal.close(gameModal);
+//                             document.getElementById("contacts").scrollIntoView({
+//                                 behavior: "smooth",
+//                             });
+//                         });
+//                 },
+//             });
+//         }
+//     });
+// };
 
 const modalCard = () => {
     document.querySelectorAll(".button-more").forEach((elem) => {
@@ -393,13 +254,15 @@ const selectMobileCategory = () => {
             //elem.innerText = "Категории авто";
         }
     };
-    document.querySelector(".select-tagline").addEventListener("click", (e) => {
-        document.querySelector(".sticky-header").classList.toggle("active");
-        checkTitleHeader(e.currentTarget);
-    });
+    document
+        .querySelector(".select-tagline-mobile")
+        .addEventListener("click", (e) => {
+            document.querySelector(".sticky-header").classList.toggle("active");
+            checkTitleHeader(e.currentTarget);
+        });
     document.querySelector(".filter-icon").addEventListener("click", (e) => {
         document.querySelector(".sticky-header").classList.toggle("active");
-        checkTitleHeader(document.querySelector(".select-tagline"));
+        checkTitleHeader(document.querySelector(".select-tagline-mobile"));
     });
     document
         .querySelector(".select-tagline__m")
@@ -460,10 +323,8 @@ const policyModal = () => {
             });
         }
     });
-}
+};
 
-accordion();
-filterItems();
 modalCard();
 initVideoPlugin();
 mobileMenu();

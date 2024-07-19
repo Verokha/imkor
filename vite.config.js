@@ -5,14 +5,16 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                "resources/scss/base.scss", 
+                "resources/scss/base.scss",
                 "resources/js/base.js",
                 "resources/js/home/index.js",
+                "resources/js/home/accordion.js",
+                "resources/js/home/car-item.js",
                 "resources/js/home/swipper.js",
                 "resources/scss/modal.scss",
                 "resources/scss/swiper-bundle.min.css",
                 "resources/scss/сongratulation.scss",
-                "resources/scss/policy.scss"
+                "resources/scss/policy.scss",
             ],
             refresh: true,
         }),

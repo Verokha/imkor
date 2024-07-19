@@ -351,7 +351,7 @@
                     &.current {
                         color: #0056e8;
                         text-decoration: underline;
-                        text-underline-offset: 4px;
+                        text-underline-offset: get-vw(8px, 1920);
                     }
                 }
             }
@@ -640,7 +640,7 @@
                         #policy {
                             color: rgba(24, 79, 171, 1);
                             text-decoration: underline;
-                            text-underline-offset: 4px;
+                            text-underline-offset: get-vw(8px, 1920);
                             cursor: pointer;
                         }
                     }

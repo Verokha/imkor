@@ -15,9 +15,10 @@
     }
     .main-section {
         height: 100vh;
-        background: url("../images/base/car_item_m.webp") no-repeat center center;
+        background: url("../images/base/car_item_m.webp") no-repeat center
+            center;
         background-size: cover;
-        background-color: #E1EAF3;
+        background-color: #e1eaf3;
         .header {
             padding-top: get-vw(20px, 375);
             padding-left: get-vw(20px, 375);
@@ -204,7 +205,8 @@
             grid-template-columns: get-vw(192px, 375) get-vw(30px, 375);
             align-items: center;
             justify-content: space-between;
-            p.select-tagline {
+            p.select-tagline,
+            p.select-tagline-mobile {
                 text-align: left;
                 border: 2px solid rgba(0, 86, 232, 1);
                 padding-top: get-vw(10px, 375);
@@ -229,7 +231,8 @@
                 border: 2px solid rgba(0, 86, 232, 1);
                 border-radius: 10px;
                 padding-bottom: get-vw(37px, 375);
-                p.select-tagline {
+                p.select-tagline,
+                p.select-tagline-mobile {
                     padding-left: get-vw(15px, 375);
                     text-align: left;
                     position: relative;
@@ -778,7 +781,7 @@
                         #policy {
                             color: rgba(24, 79, 171, 1);
                             text-decoration: underline;
-                            text-underline-offset: 4px;
+                            text-underline-offset: get-vw(3px, 375);
                             cursor: pointer;
                         }
                     }

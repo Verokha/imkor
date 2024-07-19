@@ -78,7 +78,7 @@
                             color: rgba(24, 79, 171, 1);
                             font-weight: 500;
                             text-decoration: underline;
-                            text-underline-offset: 4px;
+                            text-underline-offset: get-vw(3px, 375);
                         }
                     }
                     .button-contact {
@@ -195,7 +195,7 @@
                         .blue {
                             color: rgba(24, 79, 171, 1);
                             text-decoration: underline;
-                            text-underline-offset: 4px;
+                            text-underline-offset: get-vw(8px, 1920);
                         }
                     }
                     .button-contact {
