@@ -278,9 +278,9 @@
                                 stroke="black" />
                         </svg>
                     </div>
-                    <div class="categories">
+                    <div class="category-items categories">
                         @foreach ($categories as $category)
-                            <div class="category-item @if ($category['type'] === $filterType) current @endif "
+                            <div class="category-item-th category-item @if ($category['type'] === $filterType) current @endif "
                                 type="{{ $category['type'] }}">{{ $category['label'] }}</div>
                         @endforeach
                     </div>

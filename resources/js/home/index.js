@@ -2,102 +2,13 @@
 // import Swiper from "swiper";
 // // import Swiper styles
 // import "swiper/css";
-import MicroModal from "micromodal";
 import lightGallery from "lightgallery";
-import lgThumbnail from "lightgallery/plugins/thumbnail";
-import lgZoom from "lightgallery/plugins/zoom";
 import lgVideo from "lightgallery/plugins/video";
 import "lightgallery/css/lightgallery-bundle.css";
 import videojs from "video.js";
 window["videojs"] = videojs;
 import "video.js/dist/video-js.css";
-import { handleModal } from "./modal";
-
-const vwToPixels = (vw) => {
-    const screenWidth = window.innerWidth;
-    const pixels = (vw * screenWidth) / 100;
-
-    return pixels;
-};
-
-const insertmodal = (content, modal) => {
-    document
-        .querySelector("footer")
-        .insertAdjacentHTML(
-            "afterend",
-            `<div id="${modal}_wrapper">${content}</div>`
-        );
-};
-const onCloseModal = (modal) => {
-    const modalId = modal.getAttribute("id");
-    document.getElementById(`${modalId}_wrapper`).remove();
-};
-
-// const handleModal = (elem) => {
-//     elem.addEventListener("click", async (e) => {
-//         const response = await fetch(
-//             `/api/cars/${e.currentTarget.getAttribute("data-id")}`
-//         );
-//         if (response.ok) {
-//             const gameModal = "modal-1";
-//             const content = await response.text();
-//             insertmodal(content, gameModal);
-//             MicroModal.show(gameModal, {
-//                 disableScroll: true,
-//                 disableFocus: true,
-//                 onClose: (modal) => {
-//                     onCloseModal(modal);
-//                 },
-//                 onShow: (modal) => {
-//                     document
-//                         .querySelectorAll(".small-photo > img")
-//                         .forEach((item) => {
-//                             item.addEventListener("click", (e) => {
-//                                 document
-//                                     .querySelector(
-//                                         ".big-photo > a > img.active"
-//                                     )
-//                                     .classList.toggle("active");
-//                                 document
-//                                     .querySelector(
-//                                         `.big-photo > a > img[data-key="${e.currentTarget.getAttribute(
-//                                             "data-key"
-//                                         )}"]`
-//                                     )
-//                                     .classList.toggle("active");
-//                             });
-//                         });
-//                     lightGallery(document.getElementById("lightgallery"), {
-//                         speed: 500,
-//                         plugins: [lgZoom, lgThumbnail],
-//                         closable: true,
-//                         mobileSettings: {
-//                             controls: true,
-//                             showCloseIcon: true,
-//                         },
-//                         showCloseIcon: true,
-//                         //licenseKey: "0000-0000-000-0000",
-//                         // ... other settings
-//                     });
-//                     document
-//                         .querySelector(".to_contact")
-//                         .addEventListener("click", () => {
-//                             MicroModal.close(gameModal);
-//                             document.getElementById("contacts").scrollIntoView({
-//                                 behavior: "smooth",
-//                             });
-//                         });
-//                 },
-//             });
-//         }
-//     });
-// };
-
-const modalCard = () => {
-    document.querySelectorAll(".button-more").forEach((elem) => {
-        handleModal(elem);
-    });
-};
+import { modal } from "./modal";
 
 const initVideoPlugin = () => {
     const videoPlugin = lightGallery(
@@ -188,14 +99,7 @@ document
                     .querySelector("#contact-form > button")
                     .removeAttribute("disabled", "disabled");
 
-                insertmodal(content, modalName);
-                MicroModal.show(modalName, {
-                    disableScroll: true,
-                    onShow: (modal) => {},
-                    onClose: (modal) => {
-                        onCloseModal(modal);
-                    },
-                });
+                modal(modalName, content);
             }
         }
     });
@@ -250,8 +154,6 @@ const selectMobileCategory = () => {
                 .classList.contains("active")
         ) {
             elem.innerText = "Выберете категорию автомобиля";
-        } else {
-            //elem.innerText = "Категории авто";
         }
     };
     document
@@ -286,7 +188,7 @@ const arrowDown = () => {
     });
 };
 
-const toggleArrow = () => {
+const toggleMobileArrowUp = () => {
     const btnUp = document.querySelector(".scroll_arrow_up__m");
     const isElementInViewport = (el) => {
         return el.getBoundingClientRect().top >= 0;
@@ -314,21 +216,14 @@ const policyModal = () => {
         if (response.ok) {
             const content = await response.text();
             const modalName = "modal-policy";
-            insertmodal(content, modalName);
-            MicroModal.show(modalName, {
-                disableScroll: true,
-                onClose: (modal) => {
-                    onCloseModal(modal);
-                },
-            });
+            modal(modalName, content);
         }
     });
 };
 
-modalCard();
 initVideoPlugin();
 mobileMenu();
 selectMobileCategory();
 arrowDown();
-toggleArrow();
+toggleMobileArrowUp();
 policyModal();

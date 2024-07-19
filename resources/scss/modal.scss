@@ -69,7 +69,6 @@
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     align-items: center;
-                    //align-self: end;
                     padding-top: get-vw(26px, 375);
                     .tagline {
                         @include font(12px, 300, 14.63px, 375);
