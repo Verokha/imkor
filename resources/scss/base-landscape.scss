@@ -138,6 +138,13 @@
                     .player {
                         position: relative;
                         margin-top: get-vh(86px, 1080);
+                        video {
+                            cursor: pointer;
+                            width: get-vw(298.43px, 1920);
+                            height: get-vw(401.26px, 1920);
+                            object-fit: cover;
+                            border-radius: 20px;
+                        }
                         #gallery-videos-demo {
                             cursor: pointer;
                             width: get-vw(298px, 1920);
@@ -179,7 +186,7 @@
         }
     }
     .sticky-header {
-        height: get-vw(140px, 1920);
+        //height: get-vw(140px, 1920);
         background-color: rgba(225, 234, 243, 1);
         padding-left: get-vw(183px, 1920);
         padding-right: get-vw(183px, 1920);
@@ -194,7 +201,7 @@
             color: rgba(0, 0, 0, 0.5);
         }
         .category-items {
-            margin-top: get-vw(37px, 1920);
+            margin-top: get-vw(18.5px, 1920);
             display: flex;
             justify-content: space-between;
             p {
@@ -206,7 +213,18 @@
     }
     .section-about {
         .scroll_arrow_up__m {
-            display: none !important;
+            cursor: pointer;
+            display: none;
+            width: get-vw(75px, 1920);
+            height: get-vw(75px, 1920);
+            right: get-vw(10px, 1920);
+            bottom: get-vw(75px, 1920);
+            position: fixed;
+            z-index: 9999;
+            svg {
+                width: 100%;
+                height: 100%;
+            }
         }
         padding-top: get-vh(84px, 1080);
         padding-left: 0;
@@ -275,31 +293,51 @@
             .accordion {
                 border-bottom: 3px solid #0056e8;
                 padding-left: get-vw(100px, 1920);
-                //padding-bottom: get-vw(47px, 1920);
-                //padding-right: get-vw(104px);
                 @include font(40px, 400, 96px);
                 color: #000000;
                 cursor: pointer;
-                //margin-top: get-vw($mt, $width);
                 position: relative;
-                //background-color: rgba(242, 242, 242, 1);
-                //height: get-vw($h, $width);
-
-                //padding-left: get-vw($pl, $width);
-                //z-index: 1;
+                &::before,
                 &::after {
                     content: "";
                     width: get-vw(50px, 1920);
-                    height: get-vw(50px, 1920);
-                    background-image: url("../images/base/plus.svg");
-                    background-size: contain;
-                    background-repeat: no-repeat;
+                    height: get-vw(3px, 1920);
+                    background-color: #0056E8;
                     vertical-align: middle;
                     display: inline-block;
                     position: absolute;
+                    transition: all 0.3s ease;
+                }
+                &::before {
+                    
+                    
+                   
+                    
+                    // background-size: contain;
+                    // background-repeat: no-repeat;
+                    
                     right: get-vw(191px, 1920);
                     top: 50%;
                     transform: translateY(-50%);
+                }
+                &::after {
+                    //content: "";
+                    //width: get-vw(50px, 1920);
+                    
+                    // background-color: #0056E8;
+                    // background-size: contain;
+                    // background-repeat: no-repeat;
+                    // vertical-align: middle;
+                    // display: inline-block;
+                    // position: absolute;
+                    right: get-vw(165px, 1920);
+                    top: 50%;
+                    transform: translate(-50%, -50%) rotate(90deg);
+                }
+                &.active {
+                    &::after {
+                        transform: translate(-50%, -50%) rotate(0deg);
+                    }
                 }
             }
             .accordion-content {
@@ -355,6 +393,11 @@
                     }
                 }
             }
+            $transition-duration: 0.3s;
+            $translate-distance: get-vw(15px, 1920);
+            
+            // $transition-duration: 0.3s;
+            // $scale-factor: 1.05;
             .products {
                 padding-top: get-vw(100px, 1920);
                 padding-left: get-vw(182px, 1920);
@@ -364,6 +407,16 @@
                 grid-template-columns: repeat(3, get-vw(481px, 1920));
                 column-gap: get-vw(60px, 1920);
                 .card {
+                    transition: transform $transition-duration ease-out;
+                    transition: transform $transition-duration ease-out;
+                    &:hover {
+                        transform: translateY(-$translate-distance);
+                    }
+                    
+                    // &:hover {
+                    //     transform: scale($scale-factor);
+                    // }
+                    cursor: pointer;
                     width: get-vw(481px, 1920);
                     height: get-vw(546px, 1920);
                     border: get-vw(3px, 1920) solid rgba(0, 86, 232, 1);

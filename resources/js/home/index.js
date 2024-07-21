@@ -2,58 +2,55 @@
 // import Swiper from "swiper";
 // // import Swiper styles
 // import "swiper/css";
-import lightGallery from "lightgallery";
-import lgVideo from "lightgallery/plugins/video";
-import "lightgallery/css/lightgallery-bundle.css";
-import videojs from "video.js";
-window["videojs"] = videojs;
-import "video.js/dist/video-js.css";
+//import lightGallery from "lightgallery";
+//import lgVideo from "lightgallery/plugins/video";
+//import "lightgallery/css/lightgallery-bundle.css";
+//import videojs from "video.js";
+// window["videojs"] = videojs;
+// import "video.js/dist/video-js.css";
 import { modal } from "./modal";
 
+
+const removeControl = (video) => {
+    video.removeAttribute('controls');
+    video.nextElementSibling.style.display = 'block';
+    video.pause();
+}
+const addControl = (video) => {
+    video.setAttribute('controls', 'true');
+    video.nextElementSibling.style.display = 'none';
+    if (video.classList.contains('need_play')) {
+        video.play();
+    }
+}
+const toggleControle = (video) => {
+    if (video.hasAttribute('controls')) {
+        removeControl(video);
+    } else {
+        addControl(video);
+    }
+}
+
 const initVideoPlugin = () => {
-    const videoPlugin = lightGallery(
-        document.getElementById("gallery-videos-demo"),
-        {
-            plugins: [lgVideo],
-            videojs: true,
-            closable: true,
-            videojsOptions: {
-                muted: true,
-            },
-            mobileSettings: {
-                controls: true,
-                showCloseIcon: true,
-            },
-            showCloseIcon: true,
-        }
-    );
-    const videoPlugin__m = lightGallery(
-        document.getElementById("gallery-videos-demo__m"),
-        {
-            plugins: [lgVideo],
-            videojs: true,
-            videojsOptions: {
-                muted: true,
-            },
-            controls: true,
-            toggleThumb: true,
-            allowMediaOverlap: true,
-            mobileSettings: {
-                controls: true,
-                showCloseIcon: true,
-            },
-            showCloseIcon: true,
-        }
-    );
-    document.querySelector(".icon-play").addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log("play");
-        videoPlugin.openGallery();
-    });
-    document.querySelector(".icon-play__m").addEventListener("click", (e) => {
-        e.preventDefault();
-        console.log("play");
-        videoPlugin__m.openGallery();
+    const videoElems = document.querySelectorAll(".video");
+    videoElems.forEach((videoElem) => {
+        videoElem.addEventListener('pause', (e) => {
+            const video = e.currentTarget;
+            if (video.hasAttribute('controls')) {
+                removeControl(video);
+            }
+        });
+        videoElem.addEventListener("click", function(e) {
+            const video = e.currentTarget;
+            console.log(video.paused);
+            toggleControle(video);
+        });
+    })
+    var playButton = document.querySelector(".icon-play");
+    playButton.addEventListener('click', (e) => {
+        const videoElem = e.currentTarget.previousElementSibling;
+        videoElem.play();
+        toggleControle(videoElem);
     });
 };
 

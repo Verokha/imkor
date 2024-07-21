@@ -75,13 +75,9 @@
                             <p>Оформление всех документов</p>
                         </article>
                         <div class="player player__p">
-                            <div id="gallery-videos-demo">
-                                <a
-                                    data-video='{"source": [{"src":"{{ Vite::asset('resources/images/base/compress1.webm') }}?mute=1", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'>
-                                    <img loading="lazy" width="300" height="100" class="img-responsive"
-                                        src="{{ Vite::asset('resources/images/base/preview.png') }}" />
-                                </a>
-                            </div>
+                            <video class="video video__p" poster="{{ Vite::asset('resources/images/base/preview.png') }}" muted controlsList="nodownload" >
+                                <source src="{{ Vite::asset('resources/images/base/compress1.webm') }}" type="video/webm" />
+                            </video>
                             <div class="icon-play">
                                 <svg width="108" height="108" viewBox="0 0 108 108" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -174,33 +170,37 @@
                 </div>
                 <div class="player player__m">
                     <div id="gallery-videos-demo__m">
-                        <a
+                        <video class="video video__m need_play" poster="{{ Vite::asset('resources/images/base/preview.png') }}" muted controlsList="nodownload" >
+                            <source src="{{ Vite::asset('resources/images/base/compress1.webm') }}" type="video/webm" />
+                        </video>
+                        <div class="icon-play__m">
+                            <svg width="108" height="108" viewBox="0 0 108 108" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g filter="url(#filter0_b_63_156)">
+                                    <circle cx="53.7725" cy="54.1872" r="53.6499" fill="#D9D9D9" fill-opacity="0.4" />
+                                </g>
+                                <path d="M79.48 54.1873L40.9191 76.4504L40.9191 31.9242L79.48 54.1873Z" fill="white"
+                                    fill-opacity="0.6" />
+                                <defs>
+                                    <filter id="filter0_b_63_156" x="-4.27744" y="-3.86271" width="116.1" height="116.1"
+                                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                                        <feGaussianBlur in="BackgroundImageFix" stdDeviation="2.2" />
+                                        <feComposite in2="SourceAlpha" operator="in"
+                                            result="effect1_backgroundBlur_63_156" />
+                                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_63_156"
+                                            result="shape" />
+                                    </filter>
+                                </defs>
+                            </svg>
+                        </div>
+                        {{-- <a
                             data-video='{"source": [{"src":"{{ Vite::asset('resources/images/base/compress1.webm') }}?mute=1", "type":"video/webm"}], "attributes": {"preload": false, "playsinline": true, "controls": true}}'>
                             <img loading="lazy" width="300" height="100" class="img-responsive"
                                 src="{{ Vite::asset('resources/images/base/preview.png') }}" />
-                        </a>
+                        </a> --}}
                     </div>
-                    <div class="icon-play__m">
-                        <svg width="108" height="108" viewBox="0 0 108 108" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g filter="url(#filter0_b_63_156)">
-                                <circle cx="53.7725" cy="54.1872" r="53.6499" fill="#D9D9D9" fill-opacity="0.4" />
-                            </g>
-                            <path d="M79.48 54.1873L40.9191 76.4504L40.9191 31.9242L79.48 54.1873Z" fill="white"
-                                fill-opacity="0.6" />
-                            <defs>
-                                <filter id="filter0_b_63_156" x="-4.27744" y="-3.86271" width="116.1" height="116.1"
-                                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                                    <feGaussianBlur in="BackgroundImageFix" stdDeviation="2.2" />
-                                    <feComposite in2="SourceAlpha" operator="in"
-                                        result="effect1_backgroundBlur_63_156" />
-                                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_63_156"
-                                        result="shape" />
-                                </filter>
-                            </defs>
-                        </svg>
-                    </div>
+                    
                 </div>
                 <div class="block-image"></div>
                 <div class="block-text">

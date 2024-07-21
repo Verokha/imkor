@@ -3,9 +3,9 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
 //import lgVideo from "lightgallery/plugins/video";
 import "lightgallery/css/lightgallery-bundle.css";
-import videojs from "video.js";
-window["videojs"] = videojs;
-import "video.js/dist/video-js.css";
+// import videojs from "video.js";
+// window["videojs"] = videojs;
+// import "video.js/dist/video-js.css";
 
 const modalHandlerCard = (modalName) => {
     document.querySelectorAll(".small-photo > img").forEach((item) => {
@@ -33,6 +33,7 @@ const modalHandlerCard = (modalName) => {
         showCloseIcon: true,
     });
     document.querySelector(".to_contact").addEventListener("click", () => {
+        document.getElementById('message').value = document.getElementById(modalName).querySelector('.car_info > .title').innerText
         MicroModal.close(modalName);
         document.getElementById("contacts").scrollIntoView({
             behavior: "smooth",

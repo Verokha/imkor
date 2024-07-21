@@ -295,9 +295,11 @@
                 grid-area: player;
                 position: relative;
                 padding-top: get-vw(34px, 375);
-                img {
-                    width: 100%;
-                    height: 100%;
+                video {
+                    width: get-vw(335px, 375);
+                    height: get-vw(450.43px, 375);
+                    border-radius: get-vw(20px, 375);
+                    object-fit: cover;
                 }
                 .icon-play__m {
                     position: absolute;
@@ -837,8 +839,8 @@
         display: grid;
         padding-left: get-vw(29px, 375);
         padding-right: get-vw(29px, 375);
-        padding-top: get-vw(50px, 375);
-        padding-bottom: get-vw(50px, 375);
+        padding-top: get-vw(25px, 375);
+        padding-bottom: get-vw(25px, 375);
         background-color: rgba(225, 234, 243, 1);
         align-items: center;
         .footer-left {
@@ -855,7 +857,7 @@
         }
         .footer-right {
             justify-self: center;
-            margin-top: get-vw(50px, 375);
+            margin-top: get-vw(15px, 375);
             .social-icon {
                 display: none;
                 opacity: 0;

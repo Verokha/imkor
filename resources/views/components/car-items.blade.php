@@ -1,6 +1,6 @@
 <div class="products">
     @foreach ($carItems as $carItem)
-        <div class="card" type="{{ $carItem->type }}">
+        <div class="card" type="{{ $carItem->type }}" data-id="{{ $carItem->id }}">
             <img loading="lazy" src="{{ $carItem->imgSrc }}" />
             <p class="car-title">{{ $carItem->title }}</p>
             <p class="car-year">{{ $carItem->year }}</p>

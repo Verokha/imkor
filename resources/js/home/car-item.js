@@ -57,7 +57,7 @@ const buttonMoreListener = (elem) => {
 };
 
 const removeOldListeners = () => {
-    document.querySelectorAll(".button-more").forEach((item) => item.remove());
+    document.querySelectorAll(".card").forEach((item) => item.remove());
     document.querySelectorAll(".paginator  a").forEach((item) => item.remove());
 };
 
@@ -65,7 +65,7 @@ const addNewListeners = () => {
     document
         .querySelectorAll(".paginator  a")
         .forEach((item) => handlePaginateItem(item));
-    document.querySelectorAll(".button-more").forEach((elem) => {
+    document.querySelectorAll(".card").forEach((elem) => {
         buttonMoreListener(elem);
     });
 };
