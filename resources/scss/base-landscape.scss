@@ -393,11 +393,11 @@
                     }
                 }
             }
-            $transition-duration: 0.3s;
-            $translate-distance: get-vw(15px, 1920);
-            
             // $transition-duration: 0.3s;
-            // $scale-factor: 1.05;
+            // $translate-distance: get-vw(15px, 1920);
+            
+            $transition-duration: 0.3s;
+            $scale-factor: 1.05;
             .products {
                 padding-top: get-vw(100px, 1920);
                 padding-left: get-vw(182px, 1920);
@@ -409,13 +409,13 @@
                 .card {
                     transition: transform $transition-duration ease-out;
                     transition: transform $transition-duration ease-out;
-                    &:hover {
-                        transform: translateY(-$translate-distance);
-                    }
-                    
                     // &:hover {
-                    //     transform: scale($scale-factor);
+                    //     transform: translateY(-$translate-distance);
                     // }
+                    
+                    &:hover {
+                        transform: scale($scale-factor);
+                    }
                     cursor: pointer;
                     width: get-vw(481px, 1920);
                     height: get-vw(546px, 1920);
